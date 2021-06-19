@@ -1,0 +1,16 @@
+.rules-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 4%;
+    margin: 40px;
+}
+
+.fas {
+    margin: 50px
+}
+.rules-title {
+    font-size: 3.5rem;
+}
+.rules-text {
+    font-size: 1.5rem;
+}

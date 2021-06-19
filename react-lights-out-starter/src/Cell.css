@@ -10,3 +10,12 @@
   background-color: #00bcd4;
 }
 
+.Cell:hover {
+  cursor: pointer;
+  background-color: #3b474d;
+
+}
+
+.Cell-lit:hover {
+  background-color: #8fccd4;
+}

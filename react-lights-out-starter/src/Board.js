@@ -2,7 +2,10 @@
 
 import React, {Component} from "react";
 import Cell from "./Cell";
+
+
 import './Board.css';
+
 
 
 /** Game board of Lights out.
@@ -47,6 +50,7 @@ class Board extends Component {
       hasWon: false,
       board: this.createBoard()
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -95,22 +99,44 @@ class Board extends Component {
     this.setState({board, hasWon});
   }
 
+  handleClick(){
+    this.resetGame();
+    
+  }
 
+  
+
+  resetGame(){
+    this.setState(st => ({
+      hasWon: false,
+      board: this.createBoard()
+    }));
+    let audio = new Audio("./reset.mp3")
+      const start = () => {
+          audio.play()
+        }
+        start();
+  }
   /** Render game board or winning message. */
 
   render() {
     if (this.state.hasWon){
       return (
+    <div className="game-winner-wrapper">
         <div className="Board-title">
         <div className="Winner">
           <span className="neon-orange">You</span>
           <span className="neon-blue">Win!!!</span>
         </div>
-        <div className="play-again-btn">
-        <span className="neon-orange">Play</span>
-          <span className="neon-blue">Again!!!</span>
+      </div>
+      <div className="play-again-btn-wrapper">
+      <div onClick={this.handleClick} className="play-again-btn">
+          <span id="play-btn" className="neon-orange">Play</span>
+          <span id="play-btn" className="neon-blue play-btn">Again?</span>
         </div>
       </div>
+
+    </div>
       )
     } else {
 
@@ -130,6 +156,7 @@ class Board extends Component {
     }
 
     return (
+      
       <div>
       <div className="Board-title">
       <div className="neon-orange">Lights</div>
@@ -140,7 +167,13 @@ class Board extends Component {
               {tblBoard}
             </tbody>
           </table>
+          <div className="play-again-btn-wrapper">
+            <div onClick={this.handleClick}>
+                <span id="play-btn" className="neon-orange">New</span>
+                <span id="play-btn" className="neon-blue play-btn">Board?</span>
+            </div>
         </div>
+      </div>
     )
     // if the game is won, just show a winning msg & render nothing else
 
