@@ -2,6 +2,8 @@
 
 import React, {Component} from "react";
 import Cell from "./Cell";
+import Rules from "./Rules"
+import Footer from "./Footer"
 
 
 import './Board.css';
@@ -48,9 +50,11 @@ class Board extends Component {
     // TODO: set initial state
     this.state = {
       hasWon: false,
-      board: this.createBoard()
+      board: this.createBoard(),
+      gameStarted: false,
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleNew = this.handleNew.bind(this);
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -104,12 +108,22 @@ class Board extends Component {
     
   }
 
+  handleNew(){
+    this.resetGame();
+    
+  }
+
+  newGame(){
+  }
+
   
 
   resetGame(){
     this.setState(st => ({
       hasWon: false,
-      board: this.createBoard()
+      board: this.createBoard(),
+      gameStarted: true
+
     }));
     let audio = new Audio("./reset.mp3")
       const start = () => {
@@ -117,6 +131,8 @@ class Board extends Component {
         }
         start();
   }
+
+  
   /** Render game board or winning message. */
 
   render() {
@@ -135,7 +151,23 @@ class Board extends Component {
           <span id="play-btn" className="neon-blue play-btn">Again?</span>
         </div>
       </div>
-
+    </div>
+      )
+    } if (!this.state.gameStarted){
+      return(
+        <div className="game-winner-wrapper">
+        <div className="Board-title">
+        <div className="Winner">
+          <span className="neon-orange">Ready?</span>
+          <span className="neon-blue">To Play?</span>
+        </div>
+      </div>
+      <div className="play-again-btn-wrapper">
+      <div onClick={this.handleNew} className="play-again-btn">
+          <span id="play-btn" className="neon-orange">Click</span>
+          <span id="play-btn" className="neon-blue play-btn">Here</span>
+        </div>
+      </div>
     </div>
       )
     } else {
@@ -173,6 +205,9 @@ class Board extends Component {
                 <span id="play-btn" className="neon-blue play-btn">Board?</span>
             </div>
         </div>
+
+      <Rules />
+      <Footer />
       </div>
     )
     // if the game is won, just show a winning msg & render nothing else

@@ -28,8 +28,6 @@ class App extends Component {
         <audio src="./game-bg-new.mp3" loop autoPlay />
         <div className="game-wrapper">
         <Board />
-        <Rules />
-        <Footer />
         </div>
       </div>
     );
