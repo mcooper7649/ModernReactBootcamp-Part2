@@ -147,11 +147,12 @@ class Board extends Component {
       return (
     <div className="game-winner-wrapper">
         <div className="Board-title">
-        <div className="Winner">
+        <div className="Big-Winner">
           <span className="neon-orange">You</span>
           <span className="neon-blue">Win!!!</span>
         </div>
       </div>
+      <img className="win-img" src="https://media.giphy.com/media/o75ajIFH0QnQC3nCeD/giphy.gif" alt="the office erin excited Big Win"/>
       <div className="play-again-btn-wrapper">
       <div onClick={this.handleClick} className="play-again-btn">
           <span id="play-btn" className="neon-orange">Play</span>
