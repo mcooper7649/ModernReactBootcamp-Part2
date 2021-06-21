@@ -135,18 +135,11 @@ table tr:last-child td:last-child {
 
 
 @media only screen and (max-width: 420px) {
-  .Board {
-    width: 55vh;
-    margin: auto;
-    margin-top: 0px;
-  }
-
   .Winner .neon-blue, .Winner .neon-orange{
     font-size: 9vh;
   }
 
   .Board-title {
-    display: flex;
     align-items: center;
     justify-content: center;
   }
@@ -164,7 +157,7 @@ table tr:last-child td:last-child {
   .neon-blue {
     font-family: neon;
     color: #426DFB;
-    font-size: 55px;
+    font-size: 40px;
     line-height: 9vw;
     text-shadow: 0 0 3vw #2356FF;
   
