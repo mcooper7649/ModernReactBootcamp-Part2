@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Helmet from 'react-helmet';
 import Board from "./Board";
-import Rules from "./Rules";
-import Footer from './Footer';
+
 import "./App.css";
 
 
@@ -25,7 +24,7 @@ class App extends Component {
           <script src="https://kit.fontawesome.com/8cc1b75eb3.js" crossorigin="anonymous"></script>
           <title>LightsOut</title>
       </Helmet>
-        <audio src="./game-bg-new.mp3" loop autoPlay />
+        {/* <audio src="./game-bg-new.mp3" loop autoPlay /> */}
         <div className="game-wrapper">
         <Board />
         </div>

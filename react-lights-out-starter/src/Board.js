@@ -109,11 +109,23 @@ class Board extends Component {
   }
 
   handleNew(){
-    this.resetGame();
+    this.newGame();
     
   }
 
+
   newGame(){
+    this.setState(st => ({
+      hasWon: false,
+      board: this.createBoard(),
+      gameStarted: true
+
+    }));
+    let audio = new Audio("./game-bg-new.mp3")
+      const start = () => {
+          audio.play()
+        }
+        start();
   }
 
   
@@ -125,11 +137,6 @@ class Board extends Component {
       gameStarted: true
 
     }));
-    let audio = new Audio("./reset.mp3")
-      const start = () => {
-          audio.play()
-        }
-        start();
   }
 
   
@@ -158,7 +165,7 @@ class Board extends Component {
         <div className="game-winner-wrapper">
         <div className="Board-title">
         <div className="Winner">
-          <span className="neon-orange">Ready?</span>
+          <span className="neon-orange">Ready</span>
           <span className="neon-blue">To Play?</span>
         </div>
       </div>

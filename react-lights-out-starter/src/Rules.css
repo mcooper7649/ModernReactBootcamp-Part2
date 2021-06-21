@@ -8,9 +8,16 @@
 .fas {
     margin: 50px
 }
-.rules- {
+.rules-title {
     font-size: 3.5rem;
+    color: #909fd8;
+    
 }
 .rules-text {
-    font-size: 16px!important;
+    font-size: 26px!important;
+    color: #909fd8;
+}
+
+.img-gif {
+    width: 150px;
 }

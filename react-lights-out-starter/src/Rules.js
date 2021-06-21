@@ -7,18 +7,26 @@ class Rules extends Component{
         return (
         <div className="rules-wrapper">
             <div>
-            <i className="fas fa-arrow-down neon-blue"></i>
-            <i className="fas fa-arrow-down neon-orange"></i>
-            <i className="fas fa-arrow-down neon-blue"></i>
+            <div className="arrows">
+            <i className="fas fa-arrow-down"></i>
+            <i className="fas fa-arrow-down"></i>
+            <i className="fas fa-arrow-down"></i>
             </div>
-            <h1 className="neon-blue rules-title">Rules</h1>
+            <img src="https://i.gyazo.com/64b960d2e4d5a86840a20fd396a589c5.gif" className="img-gif" alt="tutorial gif" />
+            </div>
+            <div className="rules-wrap2">
+            <h1 className="rules-title">Rules</h1>
             <hr className="hr-line"></hr>
-            <h3 className="neon-orange rules-text">Turn all the lights off.......and Have Fun</h3>
-            <div>
-            <i className="fas fa-arrow-up neon-orange"></i>
-            <i className="fas fa-arrow-up neon-blue"></i>
-            <i className="fas fa-arrow-up neon-orange"></i>
+            <h3 className="rules-text">Turn all the lights off</h3>
+            <h3 className="rules-text">Have Fun</h3>
             </div>
+            <img src="https://i.gyazo.com/64b960d2e4d5a86840a20fd396a589c5.gif" className="img-gif" alt="tutorial gif" />
+            <div className="arrows">
+            <i className="fas fa-arrow-up"></i>
+            <i className="fas fa-arrow-up"></i>
+            <i className="fas fa-arrow-up"></i>
+            </div>
+            
         </div>
         )
     }

@@ -1,8 +1,13 @@
+
+
+
 .Board {
   border-radius: 10px;
   box-shadow: 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
   display: inline-flex;
 }
+
+
 
 
 
@@ -71,12 +76,21 @@ table tr:last-child td:last-child {
 
 .fas {
   margin: 5px!important;
+  
+}
+
+.arrows {
+  margin: 40px;
 }
 
 .hr-line {
-  width: 60%;
+  width: 80%;
   border: 3px double violet;
   box-shadow: 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
+}
+
+.rules-wrap2 {
+  margin: 20% 0;
 }
 
 .Winner {
@@ -85,7 +99,12 @@ table tr:last-child td:last-child {
 
 
 .Winner .neon-blue, .Winner .neon-orange{
-  font-size: 20vh;
+  font-size: 15vh;
+}
+
+.fas {
+  font-size: 3em;
+  color: orange;
 }
 
 @keyframes neon-orange {
