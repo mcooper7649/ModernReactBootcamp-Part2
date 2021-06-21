@@ -17,8 +17,8 @@ class App extends Component {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#000000" />
           <meta name="image" property="og:image" content="https://i.ibb.co/hCNfQ4x/thumbnail.png" />
-          <meta name="url" property="og:url" content="https://i.ibb.co/hCNfQ4x/thumbnail.png" />
-          <meta name="description" property="og:description" content="LightsOut | A Game that tests your ability to Turn off the lights. Are you Ready?" />
+          <meta name="url" property="og:url" content="https://thirsty-goodall-d53ffc.netlify.app/" />
+          <meta name="description" property="og:description" content="LightsOut | A simple click based game that tests your ability to turn off the lights. Click the pattern to inert the current selection. Do you think you have what it takes?" />
           <meta name="author" property="og:author" content="Michael Cooper" />
           <meta name="publish_date" property="og:publish_date" content="2021-06-21T00:00:00-0600" />
           <script src="https://kit.fontawesome.com/8cc1b75eb3.js" crossorigin="anonymous"></script>
