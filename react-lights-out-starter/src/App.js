@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Helmet from 'react-helmet';
 import Board from "./Board";
-
 import "./App.css";
 
 
@@ -19,8 +18,8 @@ class App extends Component {
           <meta name="image" property="og:image" content="https://image.prntscr.com/image/yiujgjgzSHqyxvP8UAlb1w.png" />
           <meta name="url" property="og:url" content="https://zen-bhaskara-0d6cd4.netlify.app/" />
           <meta name="description" property="og:description" content="LightsOut | Can YOU turn the lights out?" />
-          <meta name="author" content="Michael Cooper" />
-          <meta name="publish_date" property="og:publish_date" content="2021-06-18T00:00:00-0600"></meta>
+          <meta name="author" property="og:author" content="Michael Cooper" />
+          <meta name="publish_date" property="og:publish_date" content="2021-06-18T00:00:00-0600" />
           <script src="https://kit.fontawesome.com/8cc1b75eb3.js" crossorigin="anonymous"></script>
           <title>LightsOut</title>
       </Helmet>
