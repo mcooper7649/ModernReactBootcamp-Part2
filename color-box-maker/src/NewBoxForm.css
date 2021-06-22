@@ -1,0 +1,13 @@
+.my-form {
+    padding: 2%;
+    display: flex;
+}
+
+input {
+    margin: 3px;
+}
+
+.form-div {
+    padding: 5px;
+    align-items: flex-end;
+}

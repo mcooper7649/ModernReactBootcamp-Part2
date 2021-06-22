@@ -1,0 +1,10 @@
+.box-wrapper {
+    width: min-content;
+    display: inline-flex;
+    padding: 2% 3px;
+    
+}
+
+.btn {
+    position: absolute;
+}
