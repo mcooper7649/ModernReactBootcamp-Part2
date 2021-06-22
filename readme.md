@@ -136,7 +136,133 @@ handleChange(evt){
 1. We've see that using an iteration index as a key prop is a bad idea 
     - No natural unique key? use a library to create a uuid
     - Universally unique idetifier is a way to uniquely identify info
-    - install it using npm install uuid
-
+    - install it using ``npm install uuid``
+``
 2. import uuid from "uuid/v4"
-    - id: uuid() 
+    - id: uuidv4() 
+
+
+  
+## Box Form Challenge
+--
+
+Objective
+  - Have a form that has 3 input fields
+      - Color, Width, Height
+  - On Submit
+      - We want to to take those values and set a ``<div>`` style attributes
+  - We want to be able to generated many boxes if we want
+  - We want to also have a button our box with an "X"
+    - this will let us remove the box
+
+
+1. Lets think about what components we will need
+  - BoxList
+    - this will display our Boxes and our form
+    - This is our parent component to Box/NewBoxForm
+  - Box
+    - This will be the individual box component
+    - we will import our props from BoxList
+  - NewBoxForm
+    - This will be our Form
+    - This will get the props from BoxList
+
+
+2. Lets Create our Box First
+  - Setup Class Component
+  - Export Default box
+  - Import 'Box.css"
+  - Create 'BoxStyle' object
+    - set values to this.props
+    - set key attributes same as jsx styling
+    - specify width and height using JSX String Interpolation
+      - this lets you append px or em
+  - Insdie our return ``<div>`` add style={boxStyle}
+    - this will automatically grab our properties from our parent
+  - Add a button inside our div, we will edit later
+
+3. In our BoxList.js
+  - constructor
+    - props
+  - super
+    - props
+  - state
+    - boxes: []
+  - Lets iterate through 'this.state.boxes' with map and return a 'Box' component for each box in our boxes array
+    - {...boxes} to pass all our attributes over as props
+
+```
+  {this.state.boxes.map(boxes => {
+                return (
+                    <Box {...boxes }} />)
+            })}
+```
+
+4. NewBoxForm.js
+  - constructor
+    - props
+  - super
+    - props
+  - state
+    - color, width, height as empty strings
+  - In our return we need to setup our form
+    - Form tag
+      - onSubmit={this.handleSubmit}
+    - labels
+      - htmlFor needs to match ID of input
+    - input (1 for Color, Width, and Height)
+      - type='text'
+      - name='color'
+      - value={this.state.color}
+      - id='color'
+      - onChange={this.handleChange}
+    - button
+      - text 'add new box'!
+      - onSubmit is attached to form, not button
+    - We need handleChange and handleSubmit
+      - Bind it in the constructor
+      - handlChange
+        - pass evt
+        - this.setState
+          - ``[evt.target.name]: evt.target.value``
+      - handleSubmit
+        - pass evt
+        - preventDefault
+        - const newBox = {...this.state};
+        - this.props.createBox(newBox);
+        - reset our state using this.setState to clear the fields
+      
+  5. BoxList.js     
+      - In order to use 'createBox' the prop
+        - it needs to passed to ``<NewBoxForm createBox={this.create}>``
+      - create()
+        - we pass newBox arg
+        - setstate lifting the state and adding newbox
+```
+create(newBox){
+        this.setState({
+            boxes:[...this.state.boxes, newBox]
+        })
+    }
+```
+
+  6. NewBoxForm.js | Now that our boxes can be created as needed we just need to add the ability to click the 'X' button and remove the box
+    - we need to first add ID's to our boxes so we can remove them later
+    - lets use uuidv4
+      - import uuid
+        - add to newbox in our handleSubmit
+          ``const newBox = {...this.state, id: uuidv4()};``
+    - BoxList.js | add the props key={boxes.id} and id={boxes.id}
+    - Now we can create remove function and pass id arg
+      - this.setState
+        - use filter to setstate of boxes and shows only box.id that don't match our argument id
+        - then we can us a fat arrow and pass removeBox prop
+          - this.remove(boxes.id)
+          - this passes our arugment to remove that is needed
+      ```
+      remove(id){
+        this.setState({
+            boxes:this.state.boxes.filter(box => box.id !== id)
+        })
+    }
+    ```
