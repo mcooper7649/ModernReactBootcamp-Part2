@@ -266,3 +266,176 @@ create(newBox){
         })
     }
     ```
+
+## Todo list Challenge
+---
+
+1. App.js
+  - Remove Default Code, keep div and add TodoList.js
+  - No App.css needed
+
+2. TodoList.js
+  - We need to make it a constructor and pass super and props
+  - Export
+  - let todos = this.state.todos.map(todo) =>
+        - iterate/return above the return for clarity
+        - {todos} in our normal return to generated the list
+  - Create h1 with span for list title
+  - add NewTodoForm underneath our ``<ul>``
+  
+3. Todo.js
+  - We need to make it a constructor and pass super and props
+  - export
+  - Inside our Todo render we need to create a var named 'result'
+    - also create a state with "isEditing" default false
+    - use if/else logic for isEditing to create the div for results
+    - return 'result'
+  - if isEditing = false
+    - li with className terninary for wheter task is completed with onClick={this.handleToggle}
+    - onSubmit={this.handleUpdate} for the form
+    - another div after li
+      - inside we will have our two buttons, edit and delete
+        - Both will have an onClick event
+          - {this.toggleForm}
+          - {this.handleRemove}
+          - we will also set the edit and delete FA icons here
+  - if isEditing = true
+    - Div with a form inside
+    - Form only has 1 input and 1 button
+      ``<input type="text" value={this.state.task} name="task" onChange={this.handleChange}/>``
+    - The button says save
+      - the form has onSubmit={this.handleUpdate}
+
+4. Todo Handlers
+  - lets start by binding them all
+  ```
+       this.handleRemove = this.handleRemove.bind(this);
+        this.toggleForm = this.toggleForm.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
+  ```
+  - this.handleChange for our input on the editing form
+    - our normal code we use  often
+    ```
+     handleChange(evt) {
+        this.setState({ [evt.target.name]: evt.target.value });
+      }
+    ```
+  - this.handleUpdate for isEditing form  onSubmit
+  ```
+  handleUpdate(evt){
+        evt.preventDefault();
+        //take new task data and pass up to parent
+        this.props.updateTodo(this.props.id, this.state.task);
+        this.setState({
+            isEditing: false
+        })
+
+    }
+  ```
+  - this.handleToggle 
+    - passes this id (we need to generate on TodoList.js)
+      - to the callback method toggleTodo {this.toggleCompletion}
+
+  ``` 
+  handleToggle(evt){
+        this.props.toggleTodo(this.props.id)
+    }
+  ```
+
+  - this.toggleForm
+    - this logic is for toggling the li complete and updating teh state
+    ```
+    toggleForm(){
+        this.setState({
+            isEditing: !this.state.isEditing
+        })
+    }
+    ```
+
+  - this.handleRemove
+    - this takes our props callbackmethod removeTodo and passes the props id
+    ```
+    handleRemove(){
+        this.props.removeTodo(this.props.id)
+        
+    }
+    ```
+
+  5. Back to TodoList.js
+    - We need to create the callback methods we can pass as props and be used in our handlers Todo
+    - (Create) we pass 1 newTodo arg
+    - setState of todos:
+      - lift the cur state
+      - add newTodo
+      - pass as prop to newTodoForm component
+    
+    - (update) we pass id arg and updatedTask
+      - const updaatedTodos = this state map todos =>
+      - pass as prop to Todo component
+    
+    - (remove) we pass just the id
+      - setstate
+        - ``todos:this.state.todos.filter(task => task.id !== id)``
+
+    - (toggleCompletion) we pass just the id
+      - const updatedTodos = this.state.map.todos =>
+      - similar lagic to updat taks but !todo.completed is changed
+```
+ create(newTodo){
+        this.setState({
+            todos:[...this.state.todos, newTodo]
+        })
+    }
+    remove(id){
+        this.setState({
+            todos:this.state.todos.filter(task => task.id !== id)
+        })
+    }
+
+    update(id, updatedTask){
+        const updatedTodos = this.state.todos.map(todo => {
+            if(todo.id === id){
+                return {...todo, task: updatedTask}
+            }
+            return todo;
+        });
+        this.setState({todos: updatedTodos});
+    }
+
+    toggleCompletion(id){
+        const updatedTodos = this.state.todos.map(todo => {
+            if(todo.id === id){
+                return {...todo, completed: !todo.completed}
+            }
+            return todo;
+        });
+        this.setState({todos: updatedTodos});
+    }
+```
+
+6. NewTodoForm.js
+  - constructor/super/export
+  - import v4 uuid
+  - in the return we have form
+    - onSubmit={this.handleSubmit}
+    - Label = New Todo
+    - input
+      - attributes needed, type, name, id, value, paceholder, onChange={this.handleChange}
+    - Button +
+  - Bind for both our handlers
+  - state = task: ""
+  - normal handleChange
+  - handleSubmit
+    ```
+    handleSubmit(evt) {
+        evt.preventDefault();
+        this.props.createTodo({...this.state, id: uuidv4(), completed: false});
+        this.setState({
+            task: [""]
+        })
+      }
+    ```
+
+  Project Complete

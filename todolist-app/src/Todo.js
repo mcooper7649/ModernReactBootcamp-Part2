@@ -1,6 +1,8 @@
 import { Component } from "react";
 import './Todo.css'
 
+var _ = require('lodash');
+
 class Todo extends Component {
     constructor(props){
         super(props);
@@ -55,7 +57,7 @@ class Todo extends Component {
                 <div className="Todo">
                     
                     <li className={this.props.completed ? "Todo-task completed" : "Todo-task"} onClick={this.handleToggle}>
-                        {this.props.task}
+                    {_.startCase(_.toLower(this.props.task))}
                     </li>
                     <div className="Todo-buttons">
                     <button onClick={this.toggleForm}>
