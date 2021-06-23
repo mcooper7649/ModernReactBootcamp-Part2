@@ -21,11 +21,22 @@ class TodoList extends Component {
         this.setState({
             todos:[...this.state.todos, newTodo]
         })
+        let audio = new Audio("./mouseclick.mp3")
+        const start = () => {
+            audio.play()
+          }
+          start();
+    
     }
     remove(id){
         this.setState({
             todos:this.state.todos.filter(task => task.id !== id)
         })
+        let audio = new Audio("./trash.mp3")
+        const start = () => {
+            audio.play()
+          }
+          start();
     }
 
     update(id, updatedTask){
@@ -36,6 +47,12 @@ class TodoList extends Component {
             return todo;
         });
         this.setState({todos: updatedTodos});
+        let audio = new Audio("./mouseclick.mp3")
+        const start = () => {
+            audio.play()
+          }
+          start();
+    
     }
 
     toggleCompletion(id){
@@ -46,6 +63,13 @@ class TodoList extends Component {
             return todo;
         });
         this.setState({todos: updatedTodos});
+        let audio = new Audio("./writing.mp3")
+        const start = () => {
+            audio.play()
+          }
+          start();
+        
+        
     }
 
     render(){
