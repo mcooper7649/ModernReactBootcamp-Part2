@@ -18,28 +18,35 @@ class TodoList extends Component {
     }
 
     create(newTodo){
-        this.setState({
-            todos:[...this.state.todos, newTodo]
-        })
         let audio = new Audio("./mouseclick.mp3")
         const start = () => {
             audio.play()
           }
           start();
+        this.setState({
+            todos:[...this.state.todos, newTodo]
+        })
+        
     
     }
     remove(id){
-        this.setState({
-            todos:this.state.todos.filter(task => task.id !== id)
-        })
         let audio = new Audio("./trash.mp3")
         const start = () => {
             audio.play()
           }
           start();
+        this.setState({
+            todos:this.state.todos.filter(task => task.id !== id)
+        })
+        
     }
 
     update(id, updatedTask){
+        let audio = new Audio("./mouseclick.mp3")
+        const start = () => {
+            audio.play()
+          }
+          start();
         const updatedTodos = this.state.todos.map(todo => {
             if(todo.id === id){
                 return {...todo, task: updatedTask}
@@ -47,15 +54,17 @@ class TodoList extends Component {
             return todo;
         });
         this.setState({todos: updatedTodos});
-        let audio = new Audio("./mouseclick.mp3")
-        const start = () => {
-            audio.play()
-          }
-          start();
+       
     
     }
 
     toggleCompletion(id){
+        let audio = new Audio("./writing.mp3")
+        const start = () => {
+            audio.play()
+          }
+          start();
+          
         const updatedTodos = this.state.todos.map(todo => {
             if(todo.id === id){
                 return {...todo, completed: !todo.completed}
@@ -63,11 +72,7 @@ class TodoList extends Component {
             return todo;
         });
         this.setState({todos: updatedTodos});
-        let audio = new Audio("./writing.mp3")
-        const start = () => {
-            audio.play()
-          }
-          start();
+        
         
         
     }

@@ -1,5 +1,7 @@
 import TodoList from './TodoList.js'
+import Footer from './Footer'
 import { Helmet } from 'react-helmet';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <title>Todo List</title>
       </Helmet>
       <TodoList />
+      <Footer />
     </div>
   );
 }

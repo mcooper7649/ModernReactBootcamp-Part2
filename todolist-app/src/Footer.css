@@ -1,0 +1,15 @@
+.footer-div, a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.footer-div, a:visited{
+    color: white;
+}
+
+.fa-user-ninja {
+    color: #ff6666;
+    padding: 3px;
+}
