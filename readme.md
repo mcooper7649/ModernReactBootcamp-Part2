@@ -439,3 +439,199 @@ create(newBox){
     ```
 
   Project Complete
+
+
+  ## Personal Additions
+  ---
+
+  1. Added Lodash for the case control
+  2. Added Sound Effects
+  3. Added Helmet
+
+
+  ## Yahtzee Game
+  --
+
+  1. Get Starter Code
+    - npm i
+    - npm run start
+    (View Code as it was starter Code)
+
+Come Back and do notes
+
+  2. Creating Backend with Leaderboard
+    - Using Node with express
+    - Using Mongo with Mongoose
+    - FrontEnd will be all React
+
+
+
+### React Component Lifecycle
+--
+
+1. Every component comes with methods that allow developers to update application state and reflect the change to the UI befoere/after key react 'events'.
+  - There are three main phases to know about:
+    - mounting
+    - updating
+    - unmounting
+
+
+2. Mounting 
+  1. constructor
+  2. render
+  3. React updates DOM and refs
+  4. componentDidMount
+
+3. ComponentDidMount
+  - This method runs after the component is mounted.
+  - Mounting is the first time the componet is rendred to the DOM
+  - This is a godo palce to load any data via ajax or setup subscription/times
+  - setState inside componentDidMount will triger antoher render
+
+### Loading data via AJAX
+--
+
+1. we want to use 
+  - https://api.github.com/zen for this module
+  - We are going to setup our zenQuote component
+  - we will add the componentDidMount lifecycle function
+  
+
+2. To load the data we use
+
+```
+axios.get("https://api.github.com/zen").then(response => {
+  this.setState({
+    quote: response.data
+  })
+})
+```
+
+3. We can then simply tap into our response qoute by using {this.state.quote}
+
+4. Bad Practices
+  - Do not try to put your axios get inside the contructor and not in a lifecycle method, it may seem to work well but may break
+
+
+## Adding Animated Loaders
+---
+
+1. Due to our get request taking time to downlaod the data, we can add loading icon
+
+2. First we want to add a setTimeout() inside the body of our Axios Get
+
+3. We will setState after 3s with the response.data
+
+4. Copy any CSS from codepen with the "loader" class
+  - I created a seperate component to help with design
+
+5. Now we need to creata a state that will allow us to toggle the loader
+  - lets make "isLoaded: false"
+  - then we can add conditional logic
+
+
+## Loading Data with Async Functions
+---
+
+
+1. Using the example below you can see how we use axios to implete async/await methods for our github api response data\
+
+```
+import axios from 'axios';
+
+class App extends Component{
+  render(){
+    return
+    <div className='App'>
+      <GithubUserInfo username="facebook" />
+      <GithubUserInfo username="colt" />
+  }
+}
+
+class GithubUserInfo extends Component
+constructor(props){
+  super(props);
+  this.state = {
+    imgUrl: "",
+    name: ""
+  }
+}
+
+async componentDidMount(){
+  const url = `https://api.github.com/users/${this.props.username}`
+  let response = await axios.get(url)
+  let data = response.data
+  this.setState({
+    imgUrl:data.avatar_url, name: data,name
+  })
+}
+
+render(){
+  return (
+    <div>
+      <h1>Github User: {this.state.name}</h1>
+      <img src={this.state.imgUrl} />
+    </div>
+  )
+}
+```
+
+
+## Updating Lifecycle Method
+---
+
+1. Updating is triggered in a few different ways
+  - Render Method is triggered
+    - New Props can cause this
+    - setState can cause this
+    - foreceUpdate can cause this
+2. After any of these updates, the ComponentDidUpdate lifecycle method is executed
+  - ComponentDidUpdate
+  - This is a good time to implement any side effect operations
+    - Auto-saving
+    - updating DOM for uncontrolled components
+
+
+## ComponentDIdUpdate()
+---
+
+1. This method is called after every render occurs.
+  - You can do a comparison between the previous and current props and state
+
+```
+componentDidUpdate(prevProps, prevStatee){
+  console.log("In Component did update")
+  console.log(prevState.todos)
+}
+```
+
+
+## Unmounting
+---
+
+1. componentWillUnmount()
+  - is invoked imediately before a component is unmounted and destroyed.
+  - you should NOT set state in componentWillUnmount()
+  - it wont work anyways
+
+2. When would we use it?
+  - Clear intervals on timers are common
+  - 
+
+
+  ```
+class Clock extends Component{
+componentDidMount(){
+  this.timeID = setInterval(( => {
+    this.tick()
+  }, 1000);
+}
+
+componentWillUnmount(){
+  clearInterval(this.timerID)
+  console.log("in component will unmount")
+}
+
+  
+}
+  ```
