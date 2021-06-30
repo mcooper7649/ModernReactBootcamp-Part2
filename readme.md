@@ -654,3 +654,17 @@ Build a deck of cards using the deckofcards.com api
 
 5. Everytime the user clicks the app should sipaly a new card until the deck is empty.
     - Make sure to tell the user there are no more cards left!
+
+
+## Dad Jokes App
+---
+
+1. Goal of Challenge
+  - When the jokes are loading, display a loading spinner notifying the user that the jokes are being loaded
+  - This should hide once the jokes have finished
+  - Make sure that there are no duplicate jokes shown
+  - show the jokes sorted by the net score, and update this as the scores change
+  - store the list of jokes, with votes in local storage. W
+  - when users visit the app, it should show saved jokes, rather tahn fetching enw jokes,.
+  - However, the user should still be able to generate new jokes via the button, and these new jokes should replace the ones in local storage
+  - Add CSs styling for the joke app, including FA thumbsup/down images for the voting buttons. Make the loading spinner using FA- you can spin any of their icons.
