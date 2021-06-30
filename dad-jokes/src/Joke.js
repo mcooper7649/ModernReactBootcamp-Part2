@@ -3,9 +3,15 @@ import { Component } from 'react';
 class Joke extends Component {
     render(){
         return (
-            <div className="joke">
-                <h1 className="joke-h1">{this.props.data[0].joke}</h1>
-                <h2 className="joke-h1">{this.props.data[0].answer}</h2>
+            <div className="Joke">
+               <div className="Joke-buttons">
+                   <i className="fas fa-arrow-up"></i>
+                   <span>{this.props.votes}</span>
+                   <i className="fas fa-arrow-down"></i>
+               </div>
+               <div className="Joke-text">
+                    {this.props.text}
+               </div>
             </div>
         )
     }
