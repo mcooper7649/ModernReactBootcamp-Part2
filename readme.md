@@ -945,3 +945,92 @@ class App extends Component {
 }
 export default App
 ```
+
+## Writing a Simple Search Form
+---
+
+
+FoodSearch.js
+```
+class FoodSearch extends Component {
+  construcstor(props){
+    super(props)
+    this.state = {
+      query: ""
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(evt){
+    this.setState({
+      query: evt.target.value
+    })
+  }
+  render(){
+    <h1> Search for a Food </h1>
+    return (
+      <div>
+      <input type="text" placeholder="search for a food" value={this.state.query}
+      onChange={this.handleChange} />
+      </div>
+      <Link to={`/food/${this.state.query}`}>Go</Link>
+    )
+  }
+}
+
+export default FoodSearch
+```
+```
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+      <Switch>
+        <Route exact path='/food/:name' render={routeProps => <Food {routeProps} />}
+      <Route exact path='/food/:foodName/drink/:drinkName' component={Meal} />
+      <Route exact path='/' render{()=> <FoodSearch />}>
+      <Route render={() => <h1>Error NOT FOUND!!!</h1>}>
+      </Switch>
+      </div>
+    )
+  }
+}
+export App Component
+```
+
+
+
+## Redirects
+---
+Client-Side Redirects
+
+1. With React Router we can mimic the behavior of server-side redirects
+2. Useful after certain user actions (eg submitting a form)
+3. Can be used in lieu of having to catch-all 404 component.
+
+- In React Router, therer are two ways to redirect:
+  - Using the <Redirect> component
+  - In our example below we use /\d/.test(name) ? <redirect to = '/' /> :  to redirect home if the url contains a digit
+  
+Food.js with ``<Redirect``>
+  ```
+class Food extends Component {
+  render(){
+    const name = this.props.match.params.name;
+    const url = `https://source.unsplash.com/1600x900/?${name}`;
+    return (
+      <div className="Food>
+      {/\d/.test(name) ? (<redirect to = '/' />) :
+      (<div>
+      <h1>I love to eat food</h1>
+      <img src={url} alt={name /}>
+      </div>})
+    </div>
+    )
+  }
+}
+
+  ```
+
+
+
