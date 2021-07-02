@@ -802,6 +802,7 @@ class App extends Component{
       path='/food/:name'
       render={routeProps => <Food {...routeProps} />}
       />
+      </div>
     )
   }
 }
@@ -816,6 +817,7 @@ class App extends Component{
       path='/food/:name'
       component={Food}
       />
+      </div>
     )
   }
 }
@@ -892,4 +894,54 @@ class Meal extends Component {
   }
 }
 
+```
+
+
+## 404 Route
+---
+
+1. We need to create a 404 route for a landing page when people attempt to access a non existing route or page
+  - our example below would render Error not found
+
+App.js adding 404 
+```
+class App extends Component{
+  render(){
+    return (
+      <div className="App'>
+      <Route 
+      exact
+      path='/food/:name'
+      component={Food}
+      />
+      <Route render={() => <h1>Error Not Found</h1>} />
+      </div>
+
+    )
+  }
+}
+```
+
+2. We must wrap our 404 with a switch because the exact just wont do the routing we need
+
+3. The ORDER MATTERS when using a switch, we must remember to put the 404 at the bottom
+
+
+
+```
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+      <Switch>
+        <Route exact path='/food/:name' render={routeProps => <Food {routeProps} />}
+      <Route exact path='/food/:foodName/drink/:drinkName' component={Meal} />
+      <Route exact path='/' render{()=> <h1>Home Page</h1>}>
+      <Route render={() => <h1>Error NOT FOUND!!!</h1>}>
+      </Switch>
+      </div>
+    )
+  }
+}
+export default App
 ```
