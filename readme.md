@@ -1032,5 +1032,49 @@ class Food extends Component {
 
   ```
 
+  FoodSearch.js
+```
+class FoodSearch extends Component {
+  construcstor(props){
+    super(props)
+    this.state = {
+      query: ""
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick= this.handleClick.bind(this);
+  }
+
+  handleChange(evt){
+    this.setState({
+      query: evt.target.value
+    })
+  }
+  handleClick(){
+    //Do Something
+    alert("Saved your food to db!")
+    //redirect somewhere else
+    this.props.history.push(`/food/${this.state.query})
+  }
+  render(){
+    <h1> Search for a Food </h1>
+    return (
+      <div>
+      <input type="text" placeholder="search for a food" value={this.state.query}
+      onChange={this.handleChange} />
+      </div>
+      <Link to={`/food/${this.state.query}`}>Go</Link>
+      <button onClick={this.handleClick}>Save New Food!</button>
+    )
+  }
+}
+
+export default FoodSearch
+```
+
+## Pushing On to the history prop
+---
 
 
+1. this.props.history is something we call upon when we do something and then need to redirect somewhere else.
+2. we need to pass them as routeProps in the Route component of that path to get access WHEN using render method
+3. If using component method the routeProps will automatically be accessible
