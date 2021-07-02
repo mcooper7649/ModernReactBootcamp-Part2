@@ -1074,7 +1074,61 @@ export default FoodSearch
 ## Pushing On to the history prop
 ---
 
+- this.props.history.push("/")
 
 1. this.props.history is something we call upon when we do something and then need to redirect somewhere else.
 2. we need to pass them as routeProps in the Route component of that path to get access WHEN using render method
 3. If using component method the routeProps will automatically be accessible
+4. Best practices use history.push when someone successfully does something and leave 404 or redirect for pages not found
+
+
+## withRouter higher order component
+--
+
+1. Switch and React Router let us pass children props via render or component methods but what if we need to pass props into a navbar that doesn't use those methods?
+
+2. We can go to navbar.js and import ``import { withRouter } from "react-router-dom``
+
+3. Pass navbar in via the export ``export default withRouter (Navbar);``
+
+4. This gets us the data from react router
+
+
+## implementing a back button
+---
+
+1. There are a few methods we have access to in the this.props.history
+2. For example, goBack() or goForward() and there are many others
+
+
+```
+import React, { Component} from 'react';
+import { withRouter } from 'react-router-dom'
+import './Navbar.css'
+
+class Navbar extends Component {
+  constructor(props){
+    super(props)
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+  }
+handleLogin(){
+  alert("Logged you in!");
+  this.props.history.push("/food/salmon");
+}
+
+handleBack(){
+  this.props.history.goBack()
+}
+
+render(){
+  return (
+    <div className='Navbar'>
+      <button onClick={this.handleLogin}>Log in </button>
+      <button onClick={this.handleBack}> goBack </button>
+      <div>
+  );
+}
+
+}
+export default withRouter {Navbar};
