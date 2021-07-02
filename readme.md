@@ -783,4 +783,113 @@ ReactDOM.render(
   - Component WILL
 
 
+## URL Params
+--
 
+1. url params are useful for dynamic page and content generation
+
+2. As we learned wtith our Props.children module we can pass props down our wrap components with children.
+
+App.js
+```
+(WITH RENDER PROPS MUST BE PASSED DOWN)
+class App extends Component{
+  render(){
+    return (
+      <div className="App'>
+      <Route 
+      exact
+      path='/food/:name'
+      render={routeProps => <Food {...routeProps} />}
+      />
+    )
+  }
+}
+
+(WITH COMPONENT PROPS ARE AUTOMATICALLY PASSED DOWN)
+class App extends Component{
+  render(){
+    return (
+      <div className="App'>
+      <Route 
+      exact
+      path='/food/:name'
+      component={Food}
+      />
+    )
+  }
+}
+
+```
+
+
+3. using that methodology we can then pass our props down using either the 
+  - render method 
+  - componennt method
+
+
+```
+class Food extends Component{
+  render(){
+    const name = this.props.match.params.name
+    const url = `https://source.unsplash.com/1600x900/?${this.props.name}`;
+    return {
+      <div className='Food'>
+        <h1>I love to eat {this.props.name} </h1>
+        <img src={url}  alt={this.props.name} />
+        </div>
+    }
+  }
+}
+
+export default Food;
+```
+
+
+## Multiple Route Params
+---
+
+1. We can create a component that uses two diffent route params think, meal component that uses food and drink as their route params
+
+App.js
+```
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Route 
+        exact
+        path='/food/:name'
+        render={routeProps => <Food {routeProps} />}
+      </div>
+      <Route exact path='/food/:foodName/drink/:drinkName' component={Meal} />
+    )
+  }
+}
+export default App
+
+```
+
+2. In our example above you can see why we would need exact on Food component, if not, the Meal component would never render
+
+```
+class Meal extends Component {
+  render(){
+    const foodName = this.props.match.params.foodName;
+    const drinkName = this.props.match.params.drinkName;
+    const foodUrl = `https://source.unsplash.com/1600x900/?${foodName}`;
+    const drink Url = `https://source.unsplash.com/1600x900/?${drinkName}`;
+    return (
+      <div>
+      <h1>
+      This is a meal of {foodName} + {drinkName}
+      </h1>
+      <img src={foodUrl} />
+      <img src={drinkUrl} />
+      </div>
+    )
+
+  }
+}
+
+```
