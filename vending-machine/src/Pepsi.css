@@ -1,0 +1,6 @@
+.Pepsi {
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("pepsi.png");
+    height: 100vh;
+}

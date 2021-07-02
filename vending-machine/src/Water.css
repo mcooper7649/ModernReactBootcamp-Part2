@@ -1,0 +1,6 @@
+.Water {
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("water.jpeg");
+    height: 100vh;
+}

@@ -668,3 +668,119 @@ Build a deck of cards using the deckofcards.com api
   - when users visit the app, it should show saved jokes, rather tahn fetching enw jokes,.
   - However, the user should still be able to generate new jokes via the button, and these new jokes should replace the ones in local storage
   - Add CSs styling for the joke app, including FA thumbsup/down images for the voting buttons. Make the loading spinner using FA- you can spin any of their icons.
+
+
+2. View Dad Jokes Readme for Full Build Notes
+
+## Intro to Client Side Routing
+---
+
+Goals
+
+1. Describe what client-side routing is and why its useful
+2. Compare client-side routing to server-side routing
+3. Implement our own client-side routing with React Router
+
+
+### Server-Side Routing
+--
+1. Traditional routing is "server-side routing"
+  - Clicking a link causes browser to request a new page & replace entire DOM
+
+2. Server decides what HTML to return based on URL requested, entire page refreshes
+
+### Client-Side Routing
+--
+
+- Faking Client Side Routing
+ - It does let us show different "pages"
+   - All in the front-end, without loading new pages from server
+  - But we don't get
+    - A different URL as we move around "pages"
+    - The ability to use the back/forward browser buttons
+    - Any way to bookmark a page on the site
+  
+## React Router aka Real Client Side Routing
+--
+
+- Client-side routing handles mapping between URL bar and the content a user sees via browser tather than via server
+- Site that exclusively use client-side routing are single-page applications
+- We use JavaScript to manipulate the URL bar with a WEB API call history
+
+1. React Router is a 3rd party Router, there are many, this is popular
+- to install npm i react-router-dom
+- import BrowserRouter
+  - import {BrowserRouter} from "react-router-dom"
+  - Wrap your App!
+
+index.js
+```
+import {BrowserRouter} from "react-router-dom" 
+
+ReactDOM.render(
+  <BrowserRouter>
+  <App />
+  </BrowserRouter>
+  ,document.getElementById("root")
+)
+```
+
+2. Route is a part of react-router-dom, we put the router inside our App.js file and import Route
+
+```
+<div className='App' >
+<Route path='/dog' component={Dog} />
+</div>
+```
+
+3. This is our first route, congratulations
+  - Lets define about (our home route "/")
+  - Lets define contact
+  - you will notice that "/" matches our dog and contact as well, thus rendering more than one route
+
+4. Switch lets us prevent the rendering of similiar routes paths
+  - import it with react-router-dom
+  - switch can wrap all the routes and they need to be in reverse path order aka least specific
+  - OR we can just use exact property
+  - switch limits to one match per group
+  - best practice to use Switch and Exact together
+```
+<Switch>
+<Route exact path='/dog' component={Dog} />
+<Switch>
+```
+
+## Intro to the Link Component
+--
+
+1. The ``<link>`` comonent acts as a replacement for ``<a>`` tags.
+
+2. Instead of an href attribute, ``<link>`` use a to prop.
+
+3. Clicking on ``<Link>`` does not issue a GET request
+  - JS intercepts click and does client side routing
+  - import link from "react-router-dom"
+
+## NavLink Component
+--
+
+1. Navlink is just like link, with oen additional feature
+  - if at page that link would go to the a gets a css class of active
+  - import NavLink from 'react-router-dom'
+  - NavLink uses the attribute activeClassName as class
+  - Navlink also tries matching like routes, so we can use the 'exact' attribute
+
+## Render Prop vs Component Prop in Routes
+--
+
+1. Route does't allow us to pass props the same way in routes they do typically
+
+2. We will pass them as callback components with props
+  -  component={()=> <Dog name='Muffins' />}
+  - render={()=> <Dog name='busuits' />} 
+
+3. - Render won't go throuogh the wholelifecycle after route is called
+  - Component WILL
+
+
+

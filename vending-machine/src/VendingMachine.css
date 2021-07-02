@@ -1,0 +1,12 @@
+.machine-wrapper {
+    color: violet;
+    font-size: 2em;
+    text-decoration: none;
+    height: 100vh;
+    margin: 0 37%;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("pepsi_vending.png");
+    -webkit-box-shadow: inset -7px -2px 46px 50px #000000; 
+    box-shadow: inset -7px -2px 46px 50px #000000;
+}
