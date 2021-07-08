@@ -7,6 +7,7 @@ import hazel from "./images/hazel.jpeg"
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button} from 'react-bootstrap'
 import DogList from './DogList.js'
 import { Component } from 'react';
+import DogDetails from './DogDetails';
 
 class App extends Component {
   static defaultProps = {
@@ -48,6 +49,15 @@ class App extends Component {
   }
 
   render(){
+const getDog = props => {
+  let name = props.match.params.name;
+  let currentDog = this.props.dogs.find(
+    dog => dog.name.toLowerCase() === name.toLowerCase()
+  )
+  return  <DogDetails {...props} dog={currentDog} />
+}
+
+
   return (
     <div className="App">
     <Navbar bg="light" expand="lg">
@@ -72,7 +82,10 @@ class App extends Component {
   </Navbar.Collapse>
 </Navbar>
       <Switch>
-      <Route path='/dogs' render={() => <DogList dogs={this.props.dogs} />} />;
+      <Route exact path='/dogs' render={() => <DogList dogs={this.props.dogs} />} />;
+      </Switch>
+      <Switch>
+      <Route exact path='/dogs/:name' render={getDog} />;
       </Switch>
     </div>
   );
