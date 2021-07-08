@@ -1,9 +1,53 @@
 import React from 'react'
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
+import whiskey from './images/whiskey.jpeg'
+import tubby from "./images/tubby.jpeg"
+import hazel from "./images/hazel.jpeg"
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button} from 'react-bootstrap'
 import DogList from './DogList.js'
+import { Component } from 'react';
 
-function App() {
+class App extends Component {
+  static defaultProps = {
+    dogs: [
+      {
+        name: "Whiskey",
+        age: 5,
+        src: whiskey,
+        facts: [
+          "Whiskey loves eating popcorn.",
+          "Whiskey is a terrible guard dog.",
+          "Whiskey wants to cuddle with you!"
+        ]
+      },
+      {
+        name: "Hazel",
+        age: 3,
+        src: hazel,
+        facts: [
+          "Hazel has soooo much energy!",
+          "Hazel is highly intelligent.",
+          "Hazel loves people more than dogs."
+        ]
+      },
+      {
+        name: "Tubby",
+        age: 4,
+        src: tubby,
+        facts: [
+          "Tubby is not the brightest dog",
+          "Tubby does not like walks or exercise.",
+          "Tubby loves eating food."
+        ]
+      }
+    ]
+  }
+  constructor(props){
+    super(props)
+  }
+
+  render(){
   return (
     <div className="App">
     <Navbar bg="light" expand="lg">
@@ -27,10 +71,12 @@ function App() {
     </Form>
   </Navbar.Collapse>
 </Navbar>
-    <h1 className="display-1">Dog App</h1>
-      <DogList />
+      <Switch>
+      <Route path='/dogs' render={() => <DogList dogs={this.props.dogs} />} />;
+      </Switch>
     </div>
   );
+}
 }
 
 export default App;

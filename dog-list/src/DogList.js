@@ -1,49 +1,26 @@
 import React, { Component } from 'react'
+import "./DogList.css"
 
 class DogList extends Component {
-
-    // static defaultProps = {
-    //     dogs: [
-    //       {
-    //         name: "Whiskey",
-    //         age: 5,
-    //         src: whiskey,
-    //         facts: [
-    //           "Whiskey loves eating popcorn.",
-    //           "Whiskey is a terrible guard dog.",
-    //           "Whiskey wants to cuddle with you!"
-    //         ]
-    //       },
-    //       {
-    //         name: "Hazel",
-    //         age: 3,
-    //         src: hazel,
-    //         facts: [
-    //           "Hazel has soooo much energy!",
-    //           "Hazel is highly intelligent.",
-    //           "Hazel loves people more than dogs."
-    //         ]
-    //       },
-    //       {
-    //         name: "Tubby",
-    //         age: 4,
-    //         src: tubby,
-    //         facts: [
-    //           "Tubby is not the brightest dog",
-    //           "Tubby does not like walks or exercise.",
-    //           "Tubby loves eating food."
-    //         ]
-    //       }
-    //     ]
-    //   }
-
 constructor(props){
     super(props);
 }
     render(){
         return (
         <div className="DogList">
-            <h1>test</h1>
+            <h1 className="display-1 text-center">DogList</h1>
+            <div className="container">
+                <div className="row">
+                {this.props.dogs.map ( d =>(
+                    <div className="dog col-md-4 col-lg-4 text-center" key={d.name}>
+                    <img src={d.src} alt={d.name} />
+                    <h1>{d.name}</h1>
+                    </div>
+                ))}
+                    
+                    
+                </div>
+            </div>
         </div>
         )  
     }
